@@ -1,0 +1,29 @@
+{
+  "name": "@swin-cli/utils",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "shdulu <17625329975@163.com>",
+  "homepage": "https://github.com/shdulu/swin-cli/tree/master/packages/utils#readme",
+  "license": "ISC",
+  "main": "lib/utils.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shdulu/swin-cli.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/shdulu/swin-cli/issues"
+  },
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
