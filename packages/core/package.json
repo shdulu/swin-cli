@@ -1,6 +1,6 @@
 {
   "name": "@swin-cli/core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "swin-cli core",
   "author": "shdulu <17625329975@163.com>",
   "homepage": "https://github.com/shdulu/swin-cli/tree/master/packages/core#readme",
@@ -30,7 +30,7 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "colors": "^1.4.0",
-    "@swin-cli/utils": "^1.0.0"
+    "@swin-cli/utils": "^1.0.1",
+    "colors": "^1.4.0"
   }
 }
