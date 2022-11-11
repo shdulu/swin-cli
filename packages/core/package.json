@@ -24,6 +24,7 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "@swin-cli/utils": "^1.0.0"
   }
 }
