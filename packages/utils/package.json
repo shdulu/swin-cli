@@ -1,7 +1,7 @@
 {
   "name": "@swin-cli/utils",
   "version": "1.0.0",
-  "description": "> TODO: description",
+  "description": "swin-cli utils",
   "author": "shdulu <17625329975@163.com>",
   "homepage": "https://github.com/shdulu/swin-cli/tree/master/packages/utils#readme",
   "license": "ISC",
@@ -13,6 +13,9 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shdulu/swin-cli.git"
