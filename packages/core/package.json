@@ -5,7 +5,7 @@
   "author": "shdulu <17625329975@163.com>",
   "homepage": "https://github.com/shdulu/swin-cli/tree/master/packages/core#readme",
   "license": "ISC",
-  "main": "lib/core.js",
+  "main": "lib/index.js",
   "bin": {
     "swin-cli": "bin/index.js"
   },
@@ -30,7 +30,7 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/utils": "^1.0.2",
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "@swin-cli/utils": "file:../utils"
   }
 }
