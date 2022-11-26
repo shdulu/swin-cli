@@ -14,3 +14,6 @@
     - 分析版本号是否属于某个范围或符合一系列条件
 
 3.  `colors` colors.js 是 Nodejs 终端着色 colors 插件
+4.  `root-check` 尝试降级具有 root 权限的进程的权限，如果失败则阻止访问
+5.  `user-home` Get the path to the user home directory
+6.  `path-exists` 判断路径是否存在，支持同步和异步
