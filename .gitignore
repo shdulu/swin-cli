@@ -1,7 +1,14 @@
-node_modules/
+.vscode
+node_modules
 dist
 .idea
 .cache
 .env
-packages/**/node_modules
+commands/**/node_modules
+core/**/node_modules
+models/**/node_modules
+utils/**/node_modules
 *.log
+
+.DS_Store
+**/.DS_Store

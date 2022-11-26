@@ -18,5 +18,11 @@
   "homepage": "https://github.com/shdulu/swin-cli#readme",
   "dependencies": {
     "lerna": "^3.22.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.0"
   }
 }
