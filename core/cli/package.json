@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@swin-cli/log": "file:../../utils/log",
+    "@swin-cli/get-npm-info": "file:../../utils/get-npm-info",
     "colors": "^1.4.0",
     "dotenv": "^16.0.3",
     "import-local": "^3.1.0",

@@ -9,9 +9,9 @@ const pathExists = require('path-exists').sync
 const pkg = require('../package.json')
 const log = require('@swin-cli/log')
 const constant = require('./const')
-let args, config
+let args
 
-function core() {
+async function core() {
   // 1.检查版本号 -> 2.检查node版本 -> 3.检查root启动 -> 4.检查用户主目录
   // 5.检查入参 -> 6.检查环境变量 -> 7.检查是否为最新版本 -> 8.提示更新
   try {
@@ -22,6 +22,7 @@ function core() {
     checkUserHome()
     checkInputArgs()
     checkEnv()
+    await checkGlobalUpdate()
     // --debug 开启模式打印debug log
     log.verbose('debug', 'test debug log')
   } catch (error) {
@@ -76,7 +77,6 @@ function checkEnv() {
     })
   }
   createDefaultConfig()
-  log.verbose('process.env.CLI_HOME_PATH:', process.env.CLI_HOME_PATH)
 }
 function createDefaultConfig() {
   const cliConfig = {
@@ -90,5 +90,22 @@ function createDefaultConfig() {
   // 设置 cli 缓存目录
   process.env.CLI_HOME_PATH = cliConfig.cliHome
 }
-
+// 7.检查是否为最新版本 & 8.提示更新
+async function checkGlobalUpdate() {
+  // 1. 获取当前版本号和模块名
+  const currentVersion = pkg.version
+  const npmName = pkg.name
+  // 2. 调用 npm API， 获取所有版本号
+  const { genNpmSemverVersion } = require('@swin-cli/get-npm-info')
+  const lastVersion = await genNpmSemverVersion(currentVersion, npmName)
+  if (lastVersion && semver.gt(lastVersion, currentVersion)) {
+    log.warn(
+      colors.yellow(
+        `请手动更新 ${npmName}, 当前版本：${currentVersion}, 最新版本: ${lastVersion} 更新命令：npm install -g ${npmName}`
+      )
+    )
+  }
+  // 3. 提取所有版本号，比对那些版本号是大于当前版本号
+  // 4. 获取最新的版本号，提示用户更新到该版本
+}
 module.exports = core
