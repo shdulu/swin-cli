@@ -32,6 +32,7 @@
   "dependencies": {
     "@swin-cli/log": "file:../../utils/log",
     "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
     "import-local": "^3.1.0",
     "minimist": "^1.2.7",
     "path-exists": "^4.0.0",
