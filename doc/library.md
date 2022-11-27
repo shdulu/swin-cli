@@ -17,3 +17,4 @@
 4.  `root-check` 尝试降级具有 root 权限的进程的权限，如果失败则阻止访问
 5.  `user-home` Get the path to the user home directory
 6.  `path-exists` 判断路径是否存在，支持同步和异步
+7.  `minimist` minimist 是 nodejs 的命令行参数解析工具，是用于处理命令行调用 node 指令时，处理 node 之后的一系列参数的模块 使用文档 [minimist](http://isqing.cn/node/packages/minimist.html)

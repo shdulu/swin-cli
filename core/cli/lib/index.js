@@ -9,6 +9,7 @@ const pathExists = require('path-exists').sync
 const pkg = require('../package.json')
 const log = require('@swin-cli/log')
 const constant = require('./const')
+let args
 
 function core() {
   try {
@@ -17,6 +18,9 @@ function core() {
     checkNodeVersion()
     checkRoot()
     checkUserHome()
+    checkInputArgs()
+    // --debug 开启模式打印debug log
+    log.verbose('debug', 'test debug log')
   } catch (error) {
     log.error(error.message)
   }
@@ -42,11 +46,23 @@ function checkRoot() {
   const rootCheck = require('root-check')
   rootCheck()
 }
+// 检查用户主目录
 function checkUserHome() {
   if (!userHome || !pathExists(userHome)) {
     throw new Error(colors.red('当前登录用户主目录不存在！'))
   }
   console.log(userHome)
+}
+// 检查入参
+function checkInputArgs() {
+  const minimist = require('minimist')
+  args = minimist(process.argv.slice(2))
+  console.log(args)
+  checkArgs()
+}
+function checkArgs() {
+  process.env.LOG_LEVEL = args.debug ? 'verbose' : 'info'
+  log.level = process.env.LOG_LEVEL
 }
 
 module.exports = core
