@@ -8,6 +8,7 @@ const userHome = require('user-home');
 const pathExists = require('path-exists').sync;
 const pkg = require('../package.json');
 const log = require('@swin-cli/log');
+const init = require('@swin-cli/init');
 const commander = require('commander');
 const constant = require('./const');
 let args;
@@ -117,9 +118,7 @@ function registerCommand() {
   program
     .command('init [projectName]')
     .option('-f, --force', '是否强制初始化项目', false)
-    .action((projectName, cmdObj) => {
-      console.log('init', projectName, cmdObj.force);
-    });
+    .action(init);
 
   // 开启debug模式
   program.on('option:debug', () => {
