@@ -20,3 +20,5 @@
 7.  `minimist` minimist 是 nodejs 的命令行参数解析工具，是用于处理命令行调用 node 指令时，处理 node 之后的一系列参数的模块 使用文档 [minimist](http://isqing.cn/node/packages/minimist.html)
 8.  `dotenv` Dotenv 是一个零依赖的模块，它能将环境变量中的变量从 .env 文件加载到 process.env 中。使用文档 [dotenv](https://www.npmjs.com/package/dotenv)
 9.  `url-join` url-join 可以快速的帮我们拼接出常见格式的 url 地址。
+10. `pkg-dir` 在指定文件路径中寻找带有 package.json 文件的目录是否存在
+11. `npminstall`

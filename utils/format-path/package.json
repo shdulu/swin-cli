@@ -1,9 +1,9 @@
 {
-  "name": "@swin-cli/package",
+  "name": "@swin-cli/format-path",
   "version": "1.0.1",
-  "description": "swin-cli npm modules",
+  "description": "swin-cli format-path",
   "author": "shdulu <17625329975@163.com>",
-  "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/package#readme",
+  "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/format-path#readme",
   "license": "ISC",
   "main": "lib/index.js",
   "directories": {
@@ -22,13 +22,6 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "dependencies": {
-    "@swin-cli/format-path": "file:../../utils/format-path",
-    "@swin-cli/utils": "file:../../utils/utils",
-    "@swin-cli/get-npm-info": "file:../../utils/get-npm-info",
-    "npminstall": "^4.10.0",
-    "pkg-dir": "^5.0.0"
   },
   "bugs": {
     "url": "https://github.com/shdulu/swin-cli/issues"

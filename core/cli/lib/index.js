@@ -8,7 +8,6 @@ const userHome = require('user-home');
 const commander = require('commander');
 const pathExists = require('path-exists').sync;
 const log = require('@swin-cli/log');
-const init = require('@swin-cli/init');
 const execCommand = require('@swin-cli/exec');
 
 const constant = require('./const');
@@ -22,9 +21,9 @@ async function main() {
     registerCommand();
   } catch (error) {
     log.error(error.message);
-    if (program.debug) {
-      console.log(e);
-    }
+    // if (program.debug) {
+    //   console.log(error);
+    // }
   }
 }
 
