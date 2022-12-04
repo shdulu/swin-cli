@@ -21,9 +21,9 @@ async function main() {
     registerCommand();
   } catch (error) {
     log.error(error.message);
-    // if (program.debug) {
-    //   console.log(error);
-    // }
+    if (program.debug) {
+      console.log(error);
+    }
   }
 }
 

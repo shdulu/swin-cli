@@ -2,9 +2,12 @@
 
 'use strict';
 const path = require('path');
+const npminstall = require('npminstall');
+const pathExists = require('path-exists').sync;
+const fsExtra = require('fs-extra');
 const { isObject } = require('@swin-cli/utils');
-const { formatPath } = require('@swin-cli/format-path');
-const { getDefaultRegistry } = require('@swin-cli/get-npm-info');
+const formatPath = require('@swin-cli/format-path');
+const { getDefaultRegistry, getNpmLatestVersion } = require('@swin-cli/get-npm-info');
 const pkgDir = require('pkg-dir').sync;
 class Package {
   constructor(options) {
@@ -15,15 +18,39 @@ class Package {
     // 缓存package的路径
     this.storeDir = options.storeDir;
     // package name
-    this.packageName = options.name;
+    this.packageName = options.packageName;
     // package 的版本
     this.packageVersion = options.version;
+    // package的缓存目录前缀
+    this.cacheFilePathPrefix = this.packageName.replace('/', '_');
+  }
+  async prepare() {
+    if (this.storeDir && !pathExists(this.storeDir)) {
+      fsExtra.mkdirSync(this.storeDir);
+    }
+    if (this.packageVersion === 'latest') {
+      this.packageVersion = await getNpmLatestVersion(this.packageName);
+    }
+  }
+  get cacheFilePath() {
+    return path.resolve(
+      this.storeDir,
+      `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`
+    );
   }
   // 判断当前Package 是否存在
-  exists() {}
+  async exists() {
+    if (this.storeDir) {
+      await this.prepare();
+      return pathExists(this.cacheFilePath);
+    } else {
+      return pathExists(this.targetPath);
+    }
+  }
   // 安装 Package
-  install() {
-    npminstall({
+  async install() {
+    await this.prepare();
+    return npminstall({
       root: this.targetPath,
       storeDir: this.storeDir,
       registry: getDefaultRegistry(),
@@ -34,18 +61,25 @@ class Package {
   update() {}
   // 获取入口文件的路径
   getRootFilePath() {
-    // 1. 获取package.json 所在的目录 pkg-dir
-    const dir = pkgDir(this.targetPath);
-    // 2. 读取package.json  - require()
-    if (dir) {
-      const pkgFile = require(path.resolve(dir, 'package.json'));
-      // 3. main/lib - path
-      if (pkgFile && pkgFile.main) {
-        // 4. 路径的兼容(mscOS/windows)
-        return formatPath(path.resolve(dir, pkgFile.main));
+    function _getRootFile(targetPath) {
+      // 1. 获取package.json所在目录
+      const dir = pkgDir(targetPath);
+      if (dir) {
+        // 2. 读取package.json
+        const pkgFile = require(path.resolve(dir, 'package.json'));
+        // 3. 寻找main/lib
+        if (pkgFile && pkgFile.main) {
+          // 4. 路径的兼容(macOS/windows)
+          return formatPath(path.resolve(dir, pkgFile.main));
+        }
       }
+      return null;
     }
-    return null;
+    if (this.storeDir) {
+      return _getRootFile(this.cacheFilePath);
+    } else {
+      return _getRootFile(this.targetPath);
+    }
   }
 }
 module.exports = Package;
