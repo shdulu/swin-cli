@@ -6,7 +6,7 @@ const log = require('@swin-cli/log');
 const Package = require('@swin-cli/package');
 
 const SETTINGS = {
-  init: '@swin-cli/utils',
+  init: '@swin-cli/core',
 };
 const CACHE_DIR = 'dependencies';
 
@@ -21,10 +21,6 @@ async function exec() {
   log.verbose('1. targetPath：', targetPath);
   log.verbose('2. homePath：', homePath);
 
-  // 1. tatgetPath -> modulePath
-  // 2. modulePath -> Package(npm模块)
-  // 3. Package.getRootFile(获取入口文件)
-  // 4. Package.update / Package.install
   const cmdObj = arguments[arguments.length - 1];
   const cmdName = cmdObj.name();
   const packageName = SETTINGS[cmdName];

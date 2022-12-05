@@ -20,14 +20,15 @@ class Package {
     // package name
     this.packageName = options.packageName;
     // package 的版本
-    this.packageVersion = options.version;
+    this.packageVersion = options.packageVersion;
     // package的缓存目录前缀
     this.cacheFilePathPrefix = this.packageName.replace('/', '_');
   }
   async prepare() {
     if (this.storeDir && !pathExists(this.storeDir)) {
-      fsExtra.mkdirSync(this.storeDir);
+      fsExtra.mkdirpSync(this.storeDir);
     }
+
     if (this.packageVersion === 'latest') {
       this.packageVersion = await getNpmLatestVersion(this.packageName);
     }
@@ -36,6 +37,13 @@ class Package {
     return path.resolve(
       this.storeDir,
       `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`
+    );
+  }
+  // 获取指定版本缓存路径
+  getSpecificCacheFilePath(packageVersion) {
+    return path.resolve(
+      this.storeDir,
+      `_${this.cacheFilePathPrefix}@${packageVersion}@${this.packageName}`
     );
   }
   // 判断当前Package 是否存在
@@ -58,7 +66,23 @@ class Package {
     });
   }
   // 更新 Package
-  update() {}
+  async update() {
+    await this.prepare();
+    // 1. 获取最新的npm模块版本号
+    const latestPackageVersion = await getNpmLatestVersion(this.packageName);
+    // 2. 查询最新版本号对应的路径是否存在
+    const latestFilePath = this.getSpecificCacheFilePath(latestPackageVersion);
+    // 3. 如果不存在，则直接安装最新版本
+    if (!pathExists(latestFilePath)) {
+      await npminstall({
+        root: this.targetPath,
+        storeDir: this.storeDir,
+        registry: getDefaultRegistry(),
+        pkgs: [{ name: this.packageName, version: latestPackageVersion }],
+      });
+      this.packageVersion = latestPackageVersion;
+    }
+  }
   // 获取入口文件的路径
   getRootFilePath() {
     function _getRootFile(targetPath) {
