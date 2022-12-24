@@ -18,6 +18,7 @@ const program = new commander.Command();
 async function main() {
   try {
     await prepare();
+    // 这里的try catch 捕获不到registerCommand里的异步方法
     registerCommand();
   } catch (error) {
     log.error(error.message);
@@ -30,7 +31,6 @@ async function main() {
 // 1. 脚手架启动阶段
 async function prepare() {
   checkPkgVersion();
-  checkNodeVersion();
   checkRoot();
   checkUserHome();
   checkEnv();
@@ -42,16 +42,6 @@ function checkPkgVersion() {
   log.notice('cli', pkg.version);
 }
 
-// 2. 检查 node 版本
-function checkNodeVersion() {
-  // 第一步，获取当前node版本号
-  const currentVersion = process.version;
-  //第二步，比对最低版本号
-  const lowestNodeVersion = constant.LOWEST_NODE_VERSION;
-  if (!semver.gte(currentVersion, lowestNodeVersion)) {
-    throw new Error(colors.red(`swin-cli 需要安装 v${lowestNodeVersion} 以上版本的 Node.js`));
-  }
-}
 // 3. 检查 root 账户管理员启动 降级处理
 function checkRoot() {
   const rootCheck = require('root-check');

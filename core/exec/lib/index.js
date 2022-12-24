@@ -6,7 +6,7 @@ const log = require('@swin-cli/log');
 const Package = require('@swin-cli/package');
 
 const SETTINGS = {
-  init: '@swin-cli/core',
+  init: '@swin-cli/init',
 };
 const CACHE_DIR = 'dependencies';
 
@@ -29,8 +29,8 @@ async function exec() {
   if (!targetPath) {
     targetPath = path.resolve(homePath, CACHE_DIR); // 生成缓存路径
     storeDir = path.resolve(targetPath, 'node_modules');
-    log.verbose('1. targetPath：', targetPath);
-    log.verbose('2. storeDir：', storeDir);
+    log.verbose('3. targetPath：', targetPath);
+    log.verbose('4. storeDir：', storeDir);
     pkg = new Package({
       storeDir,
       targetPath,
@@ -52,7 +52,11 @@ async function exec() {
     });
   }
   const rootFile = pkg.getRootFilePath();
-  if (rootFile) {
-    require(rootFile).apply(null, arguments);
+  // D:/myProject/cli/swin-cli/commands/init/lib/index.js
+  try {
+    // 捕获 异步异常错误
+    if (rootFile) require(rootFile).call(null, Array.from(arguments));
+  } catch (error) {
+    log.error(error.message);
   }
 }

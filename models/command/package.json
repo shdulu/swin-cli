@@ -1,9 +1,9 @@
 {
-  "name": "@swin-cli/init",
+  "name": "@swin-cli/command",
   "version": "1.0.1",
   "description": "> TODO: description",
   "author": "shdulu <17625329975@163.com>",
-  "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/init#readme",
+  "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/command#readme",
   "license": "ISC",
   "main": "lib/index.js",
   "directories": {
@@ -27,7 +27,9 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/command": "file:../../models/command",
-    "@swin-cli/log": "file:../../utils/log"
+    "colors": "^1.4.0",
+    "semver": "^7.3.8",
+    "@swin-cli/log": "file:../../utils/log",
+    "@swin-cli/utils": "file:../../utils/utils"
   }
 }

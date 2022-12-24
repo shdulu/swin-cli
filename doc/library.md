@@ -22,3 +22,4 @@
 9.  `url-join` url-join 可以快速的帮我们拼接出常见格式的 url 地址。
 10. `pkg-dir` 在指定文件路径中寻找带有 package.json 文件的目录是否存在
 11. `npminstall`
+12. `child_process` node 内置模块，子进程
