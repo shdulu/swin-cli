@@ -23,3 +23,4 @@
 10. `pkg-dir` 在指定文件路径中寻找带有 package.json 文件的目录是否存在
 11. `npminstall`
 12. `child_process` node 内置模块，子进程
+13. `inquirer` 是一个用来实现命令行交互式界面的工具集合。它帮助我们实现与用户的交互式交流
