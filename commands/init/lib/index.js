@@ -22,9 +22,11 @@ class InitCommand extends Command {
   async exec() {
     try {
       // 1. 准备阶段
-      const ret = await this.prepare();
-      if (ret) {
+      const projectInfo = await this.prepare();
+      if (projectInfo) {
         // 2. 下载模板
+        log.verbose('projectInfo', projectInfo);
+        this.downloadTemplate();
         // 3. 安装模板
       }
     } catch (error) {
@@ -140,6 +142,13 @@ class InitCommand extends Command {
     let fileList = fs.readdirSync(localPath);
     fileList = fileList.filter(file => !file.startsWith('.') && ['node_modules'].indexOf(file) < 0);
     return !fileList || fileList.length <= 0;
+  }
+  downloadTemplate() {
+    // 1. 通过项目模板API获取项目模板信息
+    // 1.1 通过egg.js搭建一套后端系统
+    // 1.2 通过npm存储项目模板
+    // 1.3 将项目模板存储到mongodb 数据库中
+    // 1.4 通过egg.js 获取mongodb中的数据并且通过API返回
   }
 }
 
