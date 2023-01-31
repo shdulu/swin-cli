@@ -1,9 +1,9 @@
 {
-  "name": "@swin-cli/init",
+  "name": "@swin-cli/request",
   "version": "1.0.1",
   "description": "> TODO: description",
   "author": "shdulu <17625329975@163.com>",
-  "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/init#readme",
+  "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/request#readme",
   "license": "ISC",
   "main": "lib/index.js",
   "directories": {
@@ -14,7 +14,7 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://r.cnpmjs.org/"
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -27,12 +27,6 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/command": "file:../../models/command",
-    "@swin-cli/log": "file:../../utils/log",
-    "@swin-cli/request": "file:../../utils/request",
-    "fs-extra": "^9.0.1",
-    "inquirer": "^7.3.3",
-    "kebab-case": "^1.0.0",
-    "semver": "^7.3.8"
+    "axios": "^1.2.6"
   }
 }
