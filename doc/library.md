@@ -24,3 +24,4 @@
 11. `npminstall`
 12. `child_process` node 内置模块，子进程
 13. `inquirer` 是一个用来实现命令行交互式界面的工具集合。它帮助我们实现与用户的交互式交流
+14. `cli-spinner` A simple spinner for node cli.

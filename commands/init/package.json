@@ -29,10 +29,13 @@
   "dependencies": {
     "@swin-cli/command": "file:../../models/command",
     "@swin-cli/log": "file:../../utils/log",
+    "@swin-cli/utils": "file:../../utils/utils",
+    "@swin-cli/package": "file:../../models/package",
     "@swin-cli/request": "file:../../utils/request",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.3.3",
     "kebab-case": "^1.0.0",
-    "semver": "^7.3.8"
+    "semver": "^7.3.8",
+    "user-home": "^3.0.0"
   }
 }

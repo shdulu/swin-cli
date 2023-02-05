@@ -3,11 +3,15 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const fse = require('fs-extra');
 const inquirer = require('inquirer');
 const semver = require('semver');
+const userHome = require('user-home');
 const Command = require('@swin-cli/command');
+const Package = require('@swin-cli/package');
 const log = require('@swin-cli/log');
+const { spinnerStart, sleep } = require('@swin-cli/utils');
 
 const getProjectTemplate = require('./getProjectTemplate');
 
@@ -29,8 +33,8 @@ class InitCommand extends Command {
         // 2. 下载模板
         log.verbose('projectInfo', projectInfo);
         this.projectInfo = projectInfo;
+        // 3. 安装模板 - 这里如果不写await js会把这里当成Promise处理 无法try catch 异常
         await this.downloadTemplate();
-        // 3. 安装模板
       }
     } catch (error) {
       log.error(error.message);
@@ -208,8 +212,31 @@ class InitCommand extends Command {
     fileList = fileList.filter(file => !file.startsWith('.') && ['node_modules'].indexOf(file) < 0);
     return !fileList || fileList.length <= 0;
   }
-  downloadTemplate() {
-    console.log(this.projectInfo, this.template, '----------');
+  async downloadTemplate() {
+    const { projectTemplate } = this.projectInfo;
+    const templateInfo = this.template.find(item => item.npmName === projectTemplate);
+    const targetPath = path.resolve(userHome, '.swin-cli', 'template');
+    const storeDir = path.resolve(userHome, '.swin-cli', 'template', 'node_modules');
+    const { npmName, version } = templateInfo;
+    const templateNpm = new Package({
+      targetPath,
+      storeDir,
+      packageName: npmName,
+      packageVersion: version,
+    });
+    if (!(await templateNpm.exists())) {
+      const spinner = spinnerStart('正在下载模板...');
+      await sleep(500);
+      await templateNpm.install();
+      spinner.stop(true);
+      log.success('下载模板成功!');
+    } else {
+      const spinner = spinnerStart('正在更新模板...');
+      await sleep(500);
+      templateNpm.update();
+      spinner.stop(true);
+      log.success('更新模板成功!');
+    }
     // 1. 通过项目模板API获取项目模板信息
     // 1.1 通过egg.js搭建一套后端系统
     // 1.2 通过npm存储项目模板
