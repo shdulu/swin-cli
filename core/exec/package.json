@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "@swin-cli/package": "file:../../models/package",
-    "@swin-cli/log": "file:../../utils/log"
+    "@swin-cli/log": "file:../../utils/log",
+    "@swin-cli/utils": "file:../../utils/utils"
   },
   "bugs": {
     "url": "https://github.com/shdulu/swin-cli/issues"

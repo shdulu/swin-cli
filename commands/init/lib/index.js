@@ -11,7 +11,7 @@ const userHome = require('user-home');
 const Command = require('@swin-cli/command');
 const Package = require('@swin-cli/package');
 const log = require('@swin-cli/log');
-const { spinnerStart, sleep } = require('@swin-cli/utils');
+const { spinnerStart, sleep, spawnAsync } = require('@swin-cli/utils');
 
 const getProjectTemplate = require('./getProjectTemplate');
 
@@ -295,6 +295,30 @@ class InitCommand extends Command {
     } finally {
       spinner.stop(true);
       log.success('模板安装成功!');
+    }
+    // 安装依赖
+    const { installCommand, startCommand } = this.templateInfo;
+    let installRet;
+    if (installCommand) {
+      const installCmd = installCommand.split(' ');
+      const cmd = installCmd[0];
+      const args = installCmd.slice(1);
+      installRet = await spawnAsync(cmd, args, {
+        stdio: 'inherit', // 将当前执行结果转向当前执行进程的输入输出流
+        cwd: process.cwd(),
+      });
+    }
+    if (installRet !== 0) {
+      throw new Error('依赖安装过程失败');
+    }
+    if (startCommand) {
+      const startCmd = startCommand.split(' ');
+      const cmd = startCmd[0];
+      const args = startCmd.slice(1);
+      await spawnAsync(cmd, args, {
+        stdio: 'inherit',
+        cwd: process.cwd(),
+      });
     }
   }
   async installCustomTemplate() {
