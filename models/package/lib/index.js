@@ -80,8 +80,8 @@ class Package {
         registry: getDefaultRegistry(),
         pkgs: [{ name: this.packageName, version: latestPackageVersion }],
       });
-      this.packageVersion = latestPackageVersion;
     }
+    this.packageVersion = latestPackageVersion;
   }
   // 获取入口文件的路径
   getRootFilePath() {

@@ -5,6 +5,8 @@
 const fs = require('fs');
 const path = require('path');
 const fse = require('fs-extra');
+const ejs = require('ejs');
+const glob = require('glob');
 const inquirer = require('inquirer');
 const semver = require('semver');
 const userHome = require('user-home');
@@ -19,6 +21,8 @@ const TYPE_PROJECT = 'project';
 const TYPE_COMPONENT = 'component';
 const TEMPLATE_TYPE_NORMAL = 'normal';
 const TEMPLATE_TYPE_CUSTOM = 'custom';
+
+const WHITE_COMMAND = ['npm', 'cnpm'];
 
 class InitCommand extends Command {
   init() {
@@ -280,6 +284,70 @@ class InitCommand extends Command {
       throw new Error('项目模板信息不存在！');
     }
   }
+  checkCommand(cmd) {
+    if (WHITE_COMMAND.includes(cmd)) {
+      return cmd;
+    }
+    return null;
+  }
+  async execCommand(command, errMsg) {
+    let ret;
+    if (command) {
+      const cmdArray = command.split(' ');
+      const cmd = this.checkCommand(cmdArray[0]);
+      if (!cmd) {
+        throw new Error('命令不存在!命令：' + command);
+      }
+      const args = cmdArray.slice(1);
+      ret = await spawnAsync(cmd, args, {
+        stdio: 'inherit', // 将当前执行结果转向当前执行进程的输入输出流
+        cwd: process.cwd(),
+      });
+      if (ret !== 0) {
+        throw new Error(errMsg);
+      }
+      return ret;
+    }
+  }
+  async ejsRender({ ignore }) {
+    const projectInfo = this.projectInfo;
+    const dir = process.cwd();
+    return new Promise((resolve, reject) => {
+      glob(
+        '**',
+        {
+          cwd: dir,
+          ignore,
+          nodir: true,
+        },
+        (err, files) => {
+          if (err) reject(err);
+          Promise.all(
+            files.map(file => {
+              const filePath = path.join(dir, file);
+              return new Promise((resolve1, reject1) => {
+                ejs.renderFile(filePath, projectInfo, {}, (err, result) => {
+                  if (err) {
+                    reject1(err);
+                  } else {
+                    // result -> 字符串
+                    fse.writeFileSync(filePath, result);
+                    resolve1(result);
+                  }
+                });
+              });
+            })
+          )
+            .then(() => {
+              resolve();
+            })
+            .catch(err => {
+              reject(err);
+            });
+        }
+      );
+    });
+  }
   async installNormalTemplate() {
     // 拷贝当前代码至当前目录
     const spinner = spinnerStart('正在安装模板...');
@@ -296,30 +364,14 @@ class InitCommand extends Command {
       spinner.stop(true);
       log.success('模板安装成功!');
     }
+    const ignore = ['node_modules/**', 'public/**'];
+
+    await this.ejsRender({ ignore });
     // 安装依赖
     const { installCommand, startCommand } = this.templateInfo;
-    let installRet;
-    if (installCommand) {
-      const installCmd = installCommand.split(' ');
-      const cmd = installCmd[0];
-      const args = installCmd.slice(1);
-      installRet = await spawnAsync(cmd, args, {
-        stdio: 'inherit', // 将当前执行结果转向当前执行进程的输入输出流
-        cwd: process.cwd(),
-      });
-    }
-    if (installRet !== 0) {
-      throw new Error('依赖安装过程失败');
-    }
-    if (startCommand) {
-      const startCmd = startCommand.split(' ');
-      const cmd = startCmd[0];
-      const args = startCmd.slice(1);
-      await spawnAsync(cmd, args, {
-        stdio: 'inherit',
-        cwd: process.cwd(),
-      });
-    }
+    await this.execCommand(installCommand, '依赖安装过程失败');
+    // 启动命令执行
+    await this.execCommand(startCommand, '执行命令失败');
   }
   async installCustomTemplate() {
     console.log('安装自定义模板');
