@@ -364,7 +364,9 @@ class InitCommand extends Command {
       spinner.stop(true);
       log.success('模板安装成功!');
     }
-    const ignore = ['node_modules/**', 'public/**'];
+
+    const templateIgnore = this.templateInfo.ignore || [];
+    const ignore = ['node_modules/**', ...templateIgnore];
 
     await this.ejsRender({ ignore });
     // 安装依赖
@@ -374,7 +376,26 @@ class InitCommand extends Command {
     await this.execCommand(startCommand, '执行命令失败');
   }
   async installCustomTemplate() {
-    console.log('安装自定义模板');
+    // 查询自定义模板的入口文件
+    if (await this.templateNpm.exists()) {
+      const rootFile = this.templateNpm.getRootFilePath();
+      if (fs.existsSync(rootFile)) {
+        log.notice('开始执行自定义模板');
+        const templatePath = path.resolve(this.templateNpm.cacheFilePath, 'template');
+        const options = {
+          templateInfo: this.templateInfo,
+          projectInfo: this.projectInfo,
+          sourcePath: templatePath,
+          targetPath: process.cwd(),
+        };
+        const code = `require('${rootFile}')(${JSON.stringify(options)})`;
+        log.verbose('code', code);
+        await spawnAsync('node', ['-e', code], { stdio: 'inherit', cwd: process.cwd() });
+        log.success('自定义模板安装成功');
+      } else {
+        throw new Error('自定义模板入口文件不存在!');
+      }
+    }
   }
 }
 
