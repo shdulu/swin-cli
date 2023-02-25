@@ -27,7 +27,7 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/utils": "file:../utils",
+    "@swin-cli/utils": "^1.0.7",
     "colors": "^1.4.0",
     "ejs": "^3.1.8",
     "fs-extra": "^9.0.1",
@@ -37,5 +37,5 @@
     "semver": "^7.3.8",
     "user-home": "^3.0.0"
   },
-  "gitHead": "311b496e66e99dc5232787eff1c2ff2fdbc41ece"
+  "gitHead": "ccde93103187e2299f187ed370238b388f90a224"
 }
