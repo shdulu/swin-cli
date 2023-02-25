@@ -1,6 +1,6 @@
 {
   "name": "@swin-cli/package",
-  "version": "1.0.6",
+  "version": "1.0.7-alpha.0",
   "description": "swin-cli npm modules",
   "author": "shdulu <17625329975@163.com>",
   "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/package#readme",
@@ -24,9 +24,9 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@swin-cli/format-path": "^1.0.6",
+    "@swin-cli/format-path": "^1.0.7-alpha.0",
     "@swin-cli/get-npm-info": "file:../../utils/get-npm-info",
-    "@swin-cli/utils": "^1.0.6",
+    "@swin-cli/utils": "^1.0.7-alpha.0",
     "fs-extra": "^9.0.1",
     "npminstall": "^4.10.0",
     "path-exists": "^4.0.0",
