@@ -1,6 +1,6 @@
 {
   "name": "@swin-cli/command",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "> TODO: description",
   "author": "shdulu <17625329975@163.com>",
   "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/command#readme",
@@ -27,8 +27,8 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/log": "^1.0.5",
-    "@swin-cli/utils": "^1.0.5",
+    "@swin-cli/log": "^1.0.6",
+    "@swin-cli/utils": "^1.0.6",
     "colors": "^1.4.0",
     "semver": "^7.3.8"
   },

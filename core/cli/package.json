@@ -1,6 +1,6 @@
 {
   "name": "@swin-cli/core",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "swin-cli core",
   "author": "shdulu <17625329975@163.com>",
   "homepage": "https://github.com/shdulu/swin-cli/tree/master/packages/core#readme",
@@ -30,10 +30,10 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/exec": "^1.0.5",
+    "@swin-cli/exec": "^1.0.6",
     "@swin-cli/get-npm-info": "file:../../utils/get-npm-info",
-    "@swin-cli/init": "^1.0.5",
-    "@swin-cli/log": "^1.0.5",
+    "@swin-cli/init": "^1.0.6",
+    "@swin-cli/log": "^1.0.6",
     "colors": "^1.4.0",
     "commander": "^6.2.1",
     "dotenv": "^16.0.3",
