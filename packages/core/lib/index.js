@@ -56,8 +56,8 @@ function checkUserHome() {
 // 6.检查环境变量
 function checkEnv() {
   const dotenv = require('dotenv');
-  // Default: path.resolve(process.cwd(), '.env')
-  let dotenvPath = path.resolve(userHome, '.env');
+  // let dotenvPath = path.resolve(userHome, '.env');
+  let dotenvPath = path.join(__dirname, '../../../.env');
   if (pathExists(dotenvPath)) {
     dotenv.config({
       path: dotenvPath,

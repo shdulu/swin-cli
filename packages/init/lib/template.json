@@ -1,0 +1,46 @@
+{
+  "RECORDS": [
+    {
+      "_id": "63bc265840b9323434f06406",
+      "__v": "0",
+      "create_time": "1673274951884",
+      "ignore": "[ \"**/public/**\" ]",
+      "installCommand": "npm install",
+      "name": "vue2自定义模板",
+      "npmName": "swin-custom-template-vue2",
+      "startCommand": "npm run serve",
+      "tag": "[ \"project\" ]",
+      "type": "custom",
+      "url": "https://www.123.com",
+      "version": "1.0.0"
+    },
+    {
+      "_id": "63bc26a8dc6f2e2c08b99113",
+      "__v": "0",
+      "create_time": "1673275027297",
+      "ignore": "[ \"**/public/**\" ]",
+      "installCommand": "cnpm install",
+      "name": "Vue3标准模板",
+      "npmName": "swin-cli-tempalte-vue3",
+      "startCommand": "npm run serve",
+      "tag": "[ \"project\" ]",
+      "type": "normal",
+      "url": "https://www.baidu.com",
+      "version": "1.0.0"
+    },
+    {
+      "_id": "63ee3246c40900007a004d42",
+      "__v": "0",
+      "create_time": "1673275027297",
+      "ignore": "[ \"**/public/**\", \"**.png\" ]",
+      "installCommand": "npm install --registry=https://registry.npmmirror.com",
+      "name": "Vue3乐高组件标准模板",
+      "npmName": "swin-bricks-vue3",
+      "startCommand": "npm run serve",
+      "tag": "[ \"component\" ]",
+      "type": "normal",
+      "url": "https://www.baidu.com",
+      "version": "1.0.0"
+    }
+  ]
+}
