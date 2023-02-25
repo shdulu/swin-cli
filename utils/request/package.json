@@ -28,5 +28,6 @@
   },
   "dependencies": {
     "axios": "^1.2.6"
-  }
+  },
+  "gitHead": "66b5d0cd78b73c22aa71c20e5e0101df58e8ff42"
 }

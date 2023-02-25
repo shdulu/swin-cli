@@ -27,9 +27,10 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/log": "file:../../utils/log",
-    "@swin-cli/utils": "file:../../utils/utils",
+    "@swin-cli/log": "^1.0.3",
+    "@swin-cli/utils": "^1.0.3",
     "colors": "^1.4.0",
     "semver": "^7.3.8"
-  }
+  },
+  "gitHead": "66b5d0cd78b73c22aa71c20e5e0101df58e8ff42"
 }

@@ -30,10 +30,10 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/exec": "file:../exec",
+    "@swin-cli/exec": "^1.0.3",
     "@swin-cli/get-npm-info": "file:../../utils/get-npm-info",
-    "@swin-cli/init": "file:../../commands/init",
-    "@swin-cli/log": "file:../../utils/log",
+    "@swin-cli/init": "^1.0.3",
+    "@swin-cli/log": "^1.0.3",
     "colors": "^1.4.0",
     "commander": "^6.2.1",
     "dotenv": "^16.0.3",
@@ -42,5 +42,6 @@
     "root-check": "^1.0.0",
     "semver": "^7.3.8",
     "user-home": "^3.0.0"
-  }
+  },
+  "gitHead": "66b5d0cd78b73c22aa71c20e5e0101df58e8ff42"
 }

@@ -24,9 +24,9 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@swin-cli/format-path": "file:../../utils/format-path",
+    "@swin-cli/format-path": "^1.0.3",
     "@swin-cli/get-npm-info": "file:../../utils/get-npm-info",
-    "@swin-cli/utils": "file:../../utils/utils",
+    "@swin-cli/utils": "^1.0.3",
     "fs-extra": "^9.0.1",
     "npminstall": "^4.10.0",
     "path-exists": "^4.0.0",
@@ -34,5 +34,6 @@
   },
   "bugs": {
     "url": "https://github.com/shdulu/swin-cli/issues"
-  }
+  },
+  "gitHead": "66b5d0cd78b73c22aa71c20e5e0101df58e8ff42"
 }

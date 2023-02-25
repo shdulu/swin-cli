@@ -27,11 +27,11 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/command": "file:../../models/command",
-    "@swin-cli/log": "file:../../utils/log",
-    "@swin-cli/package": "file:../../models/package",
-    "@swin-cli/request": "file:../../utils/request",
-    "@swin-cli/utils": "file:../../utils/utils",
+    "@swin-cli/command": "^1.0.3",
+    "@swin-cli/log": "^1.0.3",
+    "@swin-cli/package": "^1.0.3",
+    "@swin-cli/request": "^1.0.3",
+    "@swin-cli/utils": "^1.0.3",
     "ejs": "^3.1.8",
     "fs-extra": "^9.0.1",
     "glob": "^8.1.0",
@@ -39,5 +39,6 @@
     "kebab-case": "^1.0.2",
     "semver": "^7.3.8",
     "user-home": "^3.0.0"
-  }
+  },
+  "gitHead": "66b5d0cd78b73c22aa71c20e5e0101df58e8ff42"
 }
