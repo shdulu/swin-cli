@@ -1,6 +1,6 @@
 {
   "name": "@swin-cli/exec",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "> TODO: description",
   "author": "shdulu <17625329975@163.com>",
   "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/exec#readme",
@@ -24,9 +24,9 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@swin-cli/log": "^1.0.4",
-    "@swin-cli/package": "^1.0.4",
-    "@swin-cli/utils": "^1.0.4"
+    "@swin-cli/log": "^1.0.5",
+    "@swin-cli/package": "^1.0.5",
+    "@swin-cli/utils": "^1.0.5"
   },
   "bugs": {
     "url": "https://github.com/shdulu/swin-cli/issues"
