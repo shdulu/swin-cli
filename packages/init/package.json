@@ -1,6 +1,6 @@
 {
   "name": "@swin-cli/init",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "> TODO: description",
   "author": "shdulu <17625329975@163.com>",
   "homepage": "https://github.com/shdulu/swin-cli/tree/master/core/init#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/shdulu/swin-cli/issues"
   },
   "dependencies": {
-    "@swin-cli/utils": "^1.0.7",
+    "@swin-cli/utils": "^1.0.8",
     "colors": "^1.4.0",
     "ejs": "^3.1.8",
     "fs-extra": "^9.0.1",
