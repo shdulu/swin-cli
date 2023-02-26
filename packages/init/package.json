@@ -14,7 +14,7 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://r.cnpmjs.org/"
+    "access": "public"
   },
   "repository": {
     "type": "git",
